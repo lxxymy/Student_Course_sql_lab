@@ -1,4 +1,3 @@
--- 已建库后的只读验证。可以重复运行。
 SET NAMES utf8mb4;
 USE school_lab;
 
