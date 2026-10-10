@@ -534,3 +534,24 @@ USE school_lab;
 - [MySQL Community Server 下载](https://dev.mysql.com/downloads/mysql/8.4.html)
 - [MySQL 8.4 Windows 安装说明](https://dev.mysql.com/doc/refman/8.4/en/windows-installation.html)
 - [Navicat for MySQL 下载](https://www.navicat.com/en/download/navicat-for-mysql)
+
+
+## SQL 文件与实验截图
+
+- [建库、建表与初始化数据](01_setup.sql)
+- [数据核对与三表关联查询](02_verify.sql)
+- [八道 SQL 查询练习](03_queries.sql)
+- [查看全部实验截图](SCREENSHOTS.md)
+- [查询练习与课件范围核对](COURSE_SCOPE.md)
+
+### 三表关联查询结果
+
+通过学号和课程号连接学生、课程和选课表，查询结果包含 6 条选课记录。
+
+![三表关联查询结果](images/06-inner-join.png)
+
+### 左外连接查询结果
+
+左外连接保留所有学生，结果包含 8 行。没有选课的赵六和钱七，其课程信息和成绩显示为 NULL。
+
+![左外连接查询结果](images/12-left-join.png)
