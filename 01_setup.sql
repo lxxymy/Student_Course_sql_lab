@@ -1,6 +1,3 @@
--- 学生选课数据库：首次创建脚本，MySQL 8.4。
--- 已有 school_lab 时不要重复执行。脚本不删除或覆盖已有数据库。
--- 表名统一使用小写，与本次 Windows 实验中的实际表名一致。
 SET NAMES utf8mb4;
 CREATE DATABASE school_lab
 CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
