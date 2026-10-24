@@ -469,12 +469,6 @@ USE school_lab;
 - 空值判断、相关子查询与 NOT EXISTS。
 
 
-## 参考资料
-
-- [MySQL Community Server 下载](https://dev.mysql.com/downloads/mysql/8.4.html)
-- [MySQL 8.4 Windows 安装说明](https://dev.mysql.com/doc/refman/8.4/en/windows-installation.html)
-- [Navicat for MySQL 下载](https://www.navicat.com/en/download/navicat-for-mysql)
-
 
 ## SQL 文件与实验截图
 
