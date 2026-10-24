@@ -14,6 +14,6 @@ UNION ALL SELECT 'SC', COUNT(*) FROM sc;
 -- 三表关联查询：6 行。
 SELECT s.sno AS 学号, s.sname AS 姓名,
        c.cno AS 课程号, c.cname AS 课程名称, sc.grade AS 成绩
-FROM sc
+FROM sc,s,c
 WHERE sc.sno=s.sno AND sc.cno=c.cno
 ORDER BY s.sno,c.cno;
