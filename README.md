@@ -482,7 +482,6 @@ USE school_lab;
 - [数据核对与三表关联查询](02_verify.sql)
 - [八道 SQL 查询练习](03_queries.sql)
 - [查看全部实验截图](SCREENSHOTS.md)
-- [查询练习与课件范围核对](COURSE_SCOPE.md)
 
 ### 三表关联查询结果
 
