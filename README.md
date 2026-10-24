@@ -174,12 +174,13 @@ SELECT s.sno AS 学号,
        c.cno AS 课程号,
        c.cname AS 课程名称,
        sc.grade AS 成绩
-FROM school_lab.sc AS sc
-JOIN school_lab.s AS s
-  ON sc.sno = s.sno
-JOIN school_lab.c AS c
-  ON sc.cno = c.cno
+FROM school_lab.sc AS sc,
+     school_lab.s AS s,
+     school_lab.c AS c
+WHERE sc.sno = s.sno
+  AND sc.cno = c.cno
 ORDER BY s.sno, c.cno;
+
 ```
 
 实际结果：
