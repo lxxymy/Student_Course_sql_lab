@@ -397,7 +397,7 @@ SELECT s.sno AS 学号,
        s.sname AS 姓名
 FROM school_lab.s AS s
 WHERE NOT EXISTS (
-    SELECT 1
+    SELECT *
     FROM school_lab.sc AS sc
     WHERE sc.sno = s.sno
 )
