@@ -15,6 +15,5 @@ UNION ALL SELECT 'SC', COUNT(*) FROM sc;
 SELECT s.sno AS 学号, s.sname AS 姓名,
        c.cno AS 课程号, c.cname AS 课程名称, sc.grade AS 成绩
 FROM sc
-JOIN s ON sc.sno=s.sno
-JOIN c ON sc.cno=c.cno
+WHERE sc.sno=s.sno AND sc.cno=c.cno
 ORDER BY s.sno,c.cno;
