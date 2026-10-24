@@ -298,16 +298,11 @@ WHERE 筛选分组前的记录，HAVING 筛选分组后的统计结果。本题�
 ### 练习 5：显示所有学生的选课情况，包括没有选课的学生。
 
 ```sql
-SELECT s.sno AS 学号,
-       s.sname AS 姓名,
-       c.cno AS 课程号,
-       c.cname AS 课程名称,
-       sc.grade AS 成绩
+SELECT s.sno AS 学号, s.sname AS 姓名,
+       c.cno AS 课程号, c.cname AS 课程名称, sc.grade AS 成绩
 FROM school_lab.s AS s
-LEFT JOIN school_lab.sc AS sc
-  ON s.sno = sc.sno
-LEFT JOIN school_lab.c AS c
-  ON sc.cno = c.cno
+LEFT OUTER JOIN school_lab.sc AS sc ON s.sno = sc.sno
+LEFT OUTER JOIN school_lab.c AS c ON sc.cno = c.cno
 ORDER BY s.sno, c.cno;
 ```
 
@@ -325,14 +320,13 @@ LEFT JOIN 保留左表中的所有学生。没有匹配到选课记录时，右�
 #### 6.1 查询课程及其先修课程名称
 
 ```sql
-SELECT current_course.cno AS 课程号,
-       current_course.cname AS 课程名称,
-       current_course.cpno AS 先修课程号,
-       prerequisite.cname AS 先修课程名称
-FROM school_lab.c AS current_course
-LEFT JOIN school_lab.c AS prerequisite
-  ON current_course.cpno = prerequisite.cno
-ORDER BY current_course.cno;
+SELECT X.cno AS 课程号,
+       X.cname AS 课程名称,
+       X.cpno AS 先修课程号,
+       Y.cname AS 先修课程名称
+FROM school_lab.c AS X
+LEFT OUTER JOIN school_lab.c AS Y ON X.cpno = Y.cno
+ORDER BY X.cno;
 ```
 
 结果：
@@ -351,15 +345,13 @@ c3 的先修课程号存在，但对应课程记录缺失；c4 的先修课程�
 #### 6.2 检查缺失的先修课程
 
 ```sql
-SELECT current_course.cno AS 课程号,
-       current_course.cname AS 课程名称,
-       current_course.cpno AS 缺失的先修课程号
-FROM school_lab.c AS current_course
-LEFT JOIN school_lab.c AS prerequisite
-  ON current_course.cpno = prerequisite.cno
-WHERE current_course.cpno IS NOT NULL
-  AND prerequisite.cno IS NULL
-ORDER BY current_course.cno;
+SELECT X.cno AS 课程号,
+       X.cname AS 课程名称,
+       X.cpno AS 缺失的先修课程号
+FROM school_lab.c AS X
+LEFT OUTER JOIN school_lab.c AS Y ON X.cpno = Y.cno
+WHERE X.cpno IS NOT NULL AND Y.cno IS NULL
+ORDER BY X.cno;
 ```
 
 结果只返回 c3“编译原理”，缺失的先修课程号为 c6。
@@ -374,20 +366,18 @@ ORDER BY current_course.cno;
 ### 练习 7：查询成绩高于该门课程平均成绩的选课记录。
 
 ```sql
-SELECT s.sno AS 学号,
-       s.sname AS 姓名,
-       c.cname AS 课程名称,
-       sc.grade AS 成绩
-FROM school_lab.sc AS sc
-JOIN school_lab.s AS s
-  ON sc.sno = s.sno
-JOIN school_lab.c AS c
-  ON sc.cno = c.cno
-WHERE sc.grade > (
-    SELECT AVG(other_sc.grade)
-    FROM school_lab.sc AS other_sc
-    WHERE other_sc.cno = sc.cno
-)
+SELECT s.sno AS 学号, s.sname AS 姓名,
+       c.cname AS 课程名称, sc.grade AS 成绩
+FROM school_lab.sc AS sc,
+     school_lab.s AS s,
+     school_lab.c AS c
+WHERE sc.sno = s.sno
+  AND sc.cno = c.cno
+  AND sc.grade > (
+      SELECT AVG(other_sc.grade)
+      FROM school_lab.sc AS other_sc
+      WHERE other_sc.cno = sc.cno
+  )
 ORDER BY s.sno, c.cno;
 ```
 
