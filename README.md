@@ -338,7 +338,7 @@ ORDER BY X.cno;
 | c3 | 编译原理 | c6 | NULL |
 | c4 | Pascal | NULL | NULL |
 
-同一张课程表在查询中承担两个角色，分别用 current_course 和 prerequisite 两个别名区分，这就是自连接。
+同一张课程表在查询中承担两个角色，分别用 X 和 Y 两个别名区分，这就是自连接。
 
 c3 的先修课程号存在，但对应课程记录缺失；c4 的先修课程号本身就是 NULL。两种情况需要区分。
 
@@ -355,11 +355,6 @@ ORDER BY X.cno;
 ```
 
 结果只返回 c3“编译原理”，缺失的先修课程号为 c6。
-
-两个条件的作用分别是：
-
-- cpno IS NOT NULL：当前课程填写了先修课程号。
-- prerequisite.cno IS NULL：连接时没有找到对应课程。
 
 空值判断使用 IS NULL 或 IS NOT NULL，不能写成 = NULL。
 
