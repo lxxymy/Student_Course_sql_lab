@@ -40,9 +40,3 @@ INSERT INTO c (cno,cname,credit,cpno) VALUES
 INSERT INTO sc (sno,cno,grade) VALUES
 ('801','c4',92),('801','c3',78),('801','c2',85),
 ('802','c3',82),('802','c4',90),('803','c4',88);
-
-SELECT 'S' AS table_name, COUNT(*) AS row_count FROM S
-UNION ALL
-SELECT 'C', COUNT(*) FROM C
-UNION ALL
-SELECT 'SC', COUNT(*) FROM SC;
