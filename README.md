@@ -100,7 +100,7 @@ SC(sno, cno, grade)
 
 ## 四、建立数据库与录入数据
 
-以下脚本用于首次创建实验库。如果已有同名数据库，应先检查现有内容，或更换实验库名，不要直接重复运行。
+以下脚本用于首次创建实验库。
 
 ```sql
 SET NAMES utf8mb4;
@@ -146,6 +146,11 @@ INSERT INTO sc (sno,cno,grade) VALUES
 ('801','c4',92),('801','c3',78),('801','c2',85),
 ('802','c3',82),('802','c4',90),('803','c4',88);
 
+SELECT 'S' AS table_name, COUNT(*) AS row_count FROM S
+UNION ALL
+SELECT 'C', COUNT(*) FROM C
+UNION ALL
+SELECT 'SC', COUNT(*) FROM SC;
 ```
 
 运行后，记录如下：
